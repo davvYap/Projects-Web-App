@@ -1,0 +1,267 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewData["IsHomePage"] = true;
+}
+
+<!--Welcome-->
+<section>
+    <div class="text-center my-5 py-5">
+        <h1 class="display-2 mb-3"><i class="fa-solid fa-landmark-flag"></i> Welcome</h1>
+        <div class="btn-group">
+            <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#register-modal">Register</button>
+            <a href="#projects" class="btn btn-lg btn-primary">Go to Projects</a>
+        </div>
+    </div>
+</section>
+
+<!--Modal: Register-->
+<div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-black">
+                <h5 class="modal-title" id="modal-title">
+                    Register Account
+                </h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-black">
+                <p>Registeration will be opened soon! We appreciate your patience 😊</p>
+                <label for="Email" class="form-label text-black text-muted">Email Address:</label>
+                <input type="email" class="form-control" id="modal-email" placeholder="e.g. david@example.com"/>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-dark">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Cards: Projects-->
+<section id="projects">
+    <div class="container-xl my-5 py-5">
+        <div class="text-center">
+            <h2 class="p-2 display-5">Projects</h2>
+            <p class="lead text-muted">Select Project</p>
+        </div>
+
+        <!--Tabs-->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-finance-tab" type="button" data-bs-toggle="tab" data-bs-target="#nav-finance"
+                        role="tab" aria-controls="nav-finance" aria-selected="true">
+                    Finance
+                </button>
+
+                <button class="nav-link" id="nav-manage-tab" type="button" data-bs-toggle="tab" data-bs-target="#nav-manage"
+                        role="tab" aria-controls="nav-manage" aria-selected="false">
+                    Management
+                </button>
+
+                <button class="nav-link" id="nav-game-tab" type="button" data-bs-toggle="tab" data-bs-target="#nav-game"
+                        role="tab" aria-controls="nav-game" aria-selected="false">
+                    Games
+                </button>
+            </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+            <!--Finance-->
+            <div class="tab-pane fade show active p-3" id="nav-finance" role="tabpanel" aria-labelledby="nav-finance-tab">
+                <div class="row justify-content-evenly align-items-centers g-5">
+
+                    <div class="col-8 col-md-4 col-lg-3">
+                        <div class="card bg-success" style="width: 18rem;">
+                            <div class="card-header bg-dark">Dashboard</div>
+                            <img src="~/image/chart-icon-color.png" class="card-img-top img-fluid" alt="..." />
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>Analysis on transactions.</strong></h4>
+                                <p class="card-text lead">Enter here to view recent transactions and transaction analysis.</p>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-center">
+                                        <a asp-action="Index" asp-controller="Dashboard" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+
+                    <div class="col-8 col-md-4 col-lg-3">
+                        <div class="card" style="width: 18rem; background: #751aff">
+                            <div class="card-header bg-dark">Transaction</div>
+                            <img src="~/image/transaction.jpg" class="card-img-top img-fluid" alt="..." />
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>Enter/Edit transaction.</strong> </h4>
+                                <p class="card-text lead">Enter here to add or edit transactions. A good transaction habit can make people rich!</p>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-center">
+                                        <a asp-action="Index" asp-controller="Transaction" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-8 col-md-4 col-lg-3">
+                        <div class="card bg-primary" style="width: 18rem;">
+                            <div class="card-header bg-dark">Category</div>
+                            <img src="~/image/category.png" class="card-img-top img-fluid" alt="..."/>
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>Income/Expense Category</strong> </h4>
+                                <p class="card-text lead">Enter here to add or edit income or expense categories.</p>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-center">
+                                        <a asp-action="Index" asp-controller="Category" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+ 
+            <!--Manage-->
+            <div class="tab-pane fade p-3" id="nav-manage" role="tabpanel" aria-labelledby="nav-manage-tab">
+                <div class="row justify-content-evenly align-items-centers g-5">
+
+                    <div class="col-8 col-md-4 col-lg-3">
+                        <div class="card bg-success" style="width: 18rem;">
+                            <div class="card-header bg-dark">To-Do-List</div>
+                            <img src="~/image/to-do-img.png" class="card-img-top img-fluid" alt="...">
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>Organize task!</strong></h4>
+                                <p class="card-text lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-center">
+                                        <a asp-action="ToDoList" asp-controller="Home" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-8 col-md-4 col-lg-3">
+                        <div class="card bg-info" style="width: 18rem;">
+                            <div class="card-header bg-dark">Expense Tracker</div>
+                            <img src="~/image/expenses tracker 2.png" class="card-img-top img-fluid" alt="...">
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>Track Your Expenses!</strong> </h4>
+                                <p class="card-text lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 text-center">
+                                        <a asp-action="Index" asp-controller="Category" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--Games-->
+            <div class="tab-pane fade p-3" id="nav-game" role="tabpanel" aria-labelledby="nav-game-tab">
+                <div class="row justify-content-evenly align-items-centers g-5">
+ 
+                        <div class="col-8 col-md-4 col-lg-3">
+                            <div class="card" style="width: 18rem; background: #751aff">
+                                <div class="card-header bg-dark">Guess the Number</div>
+                                <img src="~/image/guessNum.jpg" class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                <h4 class="card-title"><strong>Guess the Number!</strong></h4>
+                                    <p class="card-text lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 text-center">
+                                            <a asp-action="GuessNum" asp-controller="Home" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-8 col-md-4 col-lg-3">
+                            <div class="card" style="width: 18rem; background: #1a8cff">
+                                <div class="card-header bg-dark">Pig Game</div>
+                                <img src="~/image/PigGame.png" class="card-img-top img-fluid" alt="...">
+                                <div class="card-body">
+                                <h4 class="card-title"><strong> Battle with your friends!</strong></h4>
+                                    <p class="card-text lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 text-center">
+                                            <a asp-action="PigGame" asp-controller="Home" class="btn btn-dark">Go here</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Accordions: About Me-->
+<section id="about-me">
+    <div class="container-md my-5 py-5">
+        <div class="text-center"> 
+            <h2 class="p-2 display-5">About Me</h2>
+            <p class="lead text-muted">A glimpse about me...</p>
+        </div>
+
+        <div class="row mt-1 mb-5 g-5 justify-content-around align-items-center">
+            <div class="col-6 col-lg-4">
+                <img src="~/image/programmercut.jpg" class="img-fluid"/>
+            </div>
+
+            <!--Accordions-->
+            <div class="accordion col-lg-6" id="infos">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="header-1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" 
+                        aria-expanded="true" aria-controls="collapse1">
+                            Basic details
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="header-1"
+                         data-bs-parent="#infos">
+                        <div class="accordion-body text-light bg-dark">
+                            <strong>Hi folks, I'm David!</strong> <span class="wave">👋</span> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="header-2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2"
+                                aria-expanded="false" aria-controls="collapse2">
+                            Education & Experience 
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="header-2"
+                         data-bs-parent="#infos">
+                        <div class="accordion-body text-black">
+                            <strong>Hi folks, I'm David!</strong> <span class="wave">👋</span> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="header-3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3"
+                                aria-expanded="false" aria-controls="collapse3">
+                            Contact Information
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="header-3"
+                         data-bs-parent="#infos">
+                        <div class="accordion-body text-black">
+                            <strong>Hi folks, I'm David!</strong> <span class="wave">👋</span> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

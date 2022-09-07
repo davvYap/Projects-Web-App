@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FinancialAppDemo.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="fw-bold mb-3">Transactions <i class="bi bi-cash-coin"></i></h1>
+
+<div class="row">
+    <div class="col-md-7">
+        <ejs-grid id="transactions" dataSource="@Model" gridLines="None" allowPaging="true" allowSorting="true">
+            <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Category" field="CategoryWithIcon"></e-grid-column>
+                <e-grid-column headerText="Date" field="Date" type="date" format="dd-MMM-yy" textAlign="Left" width="120px"></e-grid-column>
+                <e-grid-column headerText="Amount" field="FormattedAmount" textAlign="Left" width="120px"></e-grid-column>
+                @*<e-grid-column headerText="Type" template="#typeColumnTemplate" width="150px"></e-grid-column>*@
+                <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100px"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+    <div class="col-md-5 d-none d-md-block">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.4);">
+            <i class="fa-solid fa-piggy-bank fa-4x"></i>
+        </div>
+    </div>
+</div>
+<div class="mt-3 row justify-content-center">
+    <div class="col-md-7">
+        <a class="btn btn-success" asp-action="Create" asp-controller="Transaction" style="width: 150px">Create</a>
+    </div>
+</div>
+
+<!-- template for Action: Edit & Delete -->
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Transaction/Edit/${TransactionId}">
+            <i class="fa-solid fa-pencil"></i>
+        </a>
+
+        <form action="/Transaction/Delete/${TransactionId}" method="post">
+            @Html.AntiForgeryToken()    @*for ValidateAntiForgeryToken manually*@
+            <button class="btn btn-sm no-a-decoration" @*data-bs-toggle="modal" data-bs-target="#delete-modal"*@ type="submit"
+            onclick="return confirm(&quot; Are you sure to delete this Category? &quot;)">
+                <i class="bi bi-trash"></i>
+            </button>
+        </form>
+    </div>
+</script>

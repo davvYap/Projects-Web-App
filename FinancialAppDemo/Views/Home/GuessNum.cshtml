@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_guessNumLayout";
+}
+
+<header>
+    <h1 class="header">Guess My Number!</h1>
+    <p class="between">(Between 1 and 20)</p>
+    <div class="row justify-content-start g-2">
+        @*<div class="col-2">
+            <button class="btn again">Play Again</button>
+        </div>*@
+        <div class="col-1">
+            <button class="btn again">Play Again</button>
+            <a asp-controller="Home" asp-action="Index" class="btn mt-4 ms-5">Hi</a>
+        </div>
+    </div>
+    <div class="row justify-content-start mt-1 ms-3">
+        <div class="col-1">
+            <a asp-controller="Home" asp-action="Index" class="btn mt-4">Back</a>
+        </div>
+    </div>
+    <div class="number">?</div>
+</header>
+<main>
+    <section class="left">
+        <input type="number" class="guess" />
+        <button class="btn check">Check!</button>
+    </section>
+    <section class="right">
+        <p class="message">🤔 Start guessing...</p>
+        <p class="label-score">💯 Score: <span class="score">20</span></p>
+        <p class="label-highscore">
+            🥇 Highscore: <span class="highscore">0</span>
+        </p>
+    </section>
+</main>
+
+
+

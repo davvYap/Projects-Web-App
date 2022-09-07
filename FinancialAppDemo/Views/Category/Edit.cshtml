@@ -1,0 +1,84 @@
+﻿@model FinancialAppDemo.Models.Category
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit <i class="fa-solid fa-pencil"></i></h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CategoryId" /> @*to retreive CategoryId*@
+                <div class="mb-3">
+                    <div class="e-btn-group custom-rbt-group">
+                        <input type="radio" id="type-1" name="Type" value="Expense" checked="@(Model.Type=="Expense")" />
+                        <label class="e-btn" for="type-1">Expense</label>
+                        <input type="radio" id="type-2" name="Type" value="Income" checked="@(Model.Type=="Income")" />
+                        <label class="e-btn" for="type-2">Income</label>
+                    </div>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+
+               @* <div class="mb-3">
+                    <ejs-textbox id="title" placeholder="Title" floatLabelType="Always" ejs-for="Title"></ejs-textbox>
+                    <span asp-validation-for="Title" class="text-danger" style="font-size:small"></span>
+                </div>*@
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Title">Title</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-app-indicator"></i>
+                        </span>
+                        <input type="text" class="form-control bg-dark text-white" placeholder="e.g. Food" asp-for="Title" name="Title" />
+                    </div>
+                    <span asp-validation-for="Title" class="text-danger" style="font-size:small"></span>
+                </div>
+
+                @*<div class="mb-3">
+                    <!-- The ejs-for is similar function as asp-for && name attribute, for model binding during HttpPost response -->
+                    <ejs-textbox id="icon" placeholder="Icon" floatLabelType="Always" ejs-for="Icon"></ejs-textbox>
+                    <span asp-validation-for="Icon" class="text-danger" style="font-size:small"></span>
+                </div>*@
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Icon">Icon</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-emoji-wink-fill"></i>
+                        </span>
+                        <input type="text" class="form-control bg-dark text-white" placeholder="e.g. 🍚" name="Icon" asp-for="Icon" />
+                    </div>
+                    <span asp-validation-for="Icon" class="text-danger" style="font-size:small"></span>
+                </div>
+
+              @*  <div class="mb-3">
+                    <ejs-button id="update" type="submit" content="Update" cssClass="e-primary"></ejs-button>
+                </div>*@
+                <div class="row justify-content-end mt-4">
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-warning btn-lg">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.4);">
+            <i class="fa-solid fa-pen-to-square fa-5x"></i>
+        </div>
+    </div>
+</div>
+
+<div class="container-lg">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-7 text-center">
+            <a asp-action="Index" class="btn btn-outline-primary mt-2">Return</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

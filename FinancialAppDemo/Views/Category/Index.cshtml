@@ -1,0 +1,122 @@
+﻿@model IEnumerable<FinancialAppDemo.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="fw-bold mb-3">Categories <i class="bi bi-square"></i></h1>
+@*<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item active fs-4" aria-current="page">Home</li>
+    </ol>
+</nav>
+<hr class="my-1"/>*@
+
+<div class="row">
+    <div class="col-md-7">
+        <ejs-grid id="categories" dataSource="@Model" gridLines="None" allowPaging="true" allowSorting="true">
+            <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+            <e-grid-columns class="e-grid">
+                <e-grid-column headerText="Category" field="TitleWithIcon"></e-grid-column>
+                <e-grid-column headerText="Type" template="#typeColumnTemplate" width="150px"></e-grid-column>
+                <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100px"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+    <div class="col-md-5 d-none d-md-block">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.4);">
+            <i class="fa-solid fa-cubes fa-4x"></i>
+        </div>
+    </div>
+</div>
+<div class="mt-3 row justify-content-center">
+    <div class="col-md-7">
+        <a class="btn btn-success" asp-action="Create" asp-controller="Category" style="width: 150px">Create</a>   
+    </div>
+</div>
+
+<!-- template for Income / expense type -->
+<script id="typeColumnTemplate" type="text/x-template">
+    ${if(Type=="Income")}
+        <span class="badge bg-success">${Type}</span>
+    ${else}
+        <span class="badge bg-warning" style="color: black">${Type}</span>
+    ${/if}
+</script>
+
+<!-- template for Action: Edit & Delete -->
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Category/Edit/${CategoryId}">
+            <i class="fa-solid fa-pencil"></i>
+        </a>
+
+        <form action="/Category/Delete/${CategoryId}" method="post">
+            @Html.AntiForgeryToken()    @*for ValidateAntiForgeryToken manually*@
+            <button class="btn btn-sm no-a-decoration" @*data-bs-toggle="modal" data-bs-target="#delete-modal"*@ type="submit"
+            onclick="return confirm(&quot; Are you sure to delete this Category? &quot;)">
+                <i class="bi bi-trash"></i>
+            </button>
+        </form>
+    </div>
+</script>
+
+
+<!--for modal Register-->
+@*<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-black">
+                <h5 class="modal-title" id="modal-title">
+                    Delete this Category?
+                </h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-black">
+                <p>Are you sure to delete this category? </p>
+                    <form action="/Category/Delete/${CategoryId}" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="submit" class="btn btn-danger form-control" value="Delete"/>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+@*
+<div class="row">
+    <div class="col-md-7">
+        <table class="table table-dark table-hover table-borderless h5">
+            <thead class="fw-bold text-white text-start">
+                <tr>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                    <tr class="col-md-7 text-white text-end">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TitleWithIcon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td d-flex flex-row justify-content-start>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId"><i class="fa-solid fa-pencil"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.CategoryId"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
+*@

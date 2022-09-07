@@ -1,0 +1,95 @@
+﻿@model FinancialAppDemo.Models.Transaction
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="mb-3"> <i class="fa-solid fa-pencil"></i> Transaction</h2>
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="TransactionId" /> @*to retreive TransactionId*@
+
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <span class="tt" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter transaction date.">
+                                <i class="bi bi-calendar-event"></i>
+                            </span>
+                        </span>
+                        <input asp-for="Date" type="date" class="form-control bg-dark text-white text-center" />
+                    </div>
+                    <span asp-validation-for="Date" class="text-danger" style="font-size:small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label">Category</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <span class="tt" data-bs-toggle="tooltip" data-bs-placement="top" title="Choose a category.">
+                                <i class="fa-solid fa-cubes"></i>
+                            </span>
+                        </span>
+                        <select asp-for="CategoryId" class="form-control bg-dark text-white text-center" asp-items="ViewBag.CategoryId"></select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Amount" class="form-label">Transaction Amount</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <span class="tt" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter transaction amount.">
+                                <i class="bi bi-currency-dollar"></i>
+                            </span>
+                        </span>
+                        <input type="number" asp-for="Amount" class="form-control text-white bg-dark" placeholder="99.90" min="0">
+                    </div>
+                    <span asp-validation-for="Amount" class="text-danger" style="font-size:small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-floating mt-4">
+                        <textarea type="text" asp-for="Details" class="form-control text-white bg-dark text-center " style="height: 100px" id="floatingDetails"
+                                  placeholder="Leave details about this transaction.">Details</textarea>
+                        <label for="floatingDetails" class="fs-5">Enter transaction details.</label>
+                    </div>
+                    <span asp-validation-for="Details" class="text-danger" style="font-size:small"></span>
+                </div>
+
+                <div class="row justify-content-end mt-4">
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-warning btn-lg">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-5 d-none d-md-block">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.4);">
+            <i class="fa-solid fa-money-bill-transfer fa-4x"></i>
+        </div>
+    </div>
+</div>
+
+<div class="container-lg">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-7 text-center">
+            <a asp-action="Index" class="btn btn-outline-primary mt-2">Return</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tooltips = document.querySelectorAll('.tt');
+    tooltips.forEach(t => {
+        new bootstrap.Tooltip(t)
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
