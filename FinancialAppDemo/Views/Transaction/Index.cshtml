@@ -12,7 +12,7 @@
             <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
             <e-grid-columns>
                 <e-grid-column headerText="Category" field="CategoryWithIcon"></e-grid-column>
-                <e-grid-column headerText="Date" field="Date" type="date" format="dd-MMM-yy" textAlign="Left" width="120px"></e-grid-column>
+                <e-grid-column headerText="Date" field="FormattedDate" textAlign="Left" width="180px"></e-grid-column>
                 <e-grid-column headerText="Amount" field="FormattedAmount" textAlign="Left" width="120px"></e-grid-column>
                 @*<e-grid-column headerText="Type" template="#typeColumnTemplate" width="150px"></e-grid-column>*@
                 <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100px"></e-grid-column>
@@ -27,7 +27,7 @@
 </div>
 <div class="mt-3 row justify-content-center">
     <div class="col-md-7">
-        <a class="btn btn-success" asp-action="Create" asp-controller="Transaction" style="width: 150px">Create</a>
+        <a class="btn btn-success" asp-action="Create" asp-controller="Transaction" style="width: 150px">Add</a>
     </div>
 </div>
 
