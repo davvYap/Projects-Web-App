@@ -17,9 +17,29 @@
     <header>
         <nav class="navbar sticky-top navbar-expand-sm navbar-toggleable-sm box-shadow mb-1">
             <div class="container-xxl">
-                <a class="navbar-brand fw-bolder text-secondary fs-4" href="#sidebar" data-bs-toggle="offcanvas"
-                   role="button" aria-controls="sidebar"><i class="fa-solid fa-spinner fa-pulse"></i> Readme</a>
- 
+                <!--For home page-->
+                @if (ViewData["isExpenseTrackerApp"] == null)
+                {
+                    <a class="navbar-brand fw-bolder text-secondary fs-4" href="#home-sidebar" data-bs-toggle="offcanvas"
+                       role="button" aria-controls="sidebar"><i class="fa-solid fa-spinner fa-pulse"></i> Readme</a>                 
+                }
+
+                <!--For expense tracker-->
+                @if (ViewData["isHomePage"] == null)
+                {
+                    <div class="dropdown mt-3">
+                        <button class="btn dropdown-toggle bg-opacity-100 text-white" type="button" id="expense-dropdown"
+                            data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-sliders"></i> Navigate
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projects-dropdown">
+                            <li><a class="dropdown-item" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+                            <li><a class="dropdown-item" asp-controller="Transaction" asp-action="Index">Transaction</a></li>
+                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a></li>
+                        </ul>
+                    </div>
+                }
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" 
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -32,13 +52,13 @@
                             <a class="nav-link text-light fw-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light fw-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-bell"></i></a>
+                            <a class="nav-link text-light fw-light"><i class="bi bi-bell"></i></a>
                         </li>
                         <li class="nav-item d-md-none">
-                            <a class="nav-link text-light fw-light" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <a class="nav-link text-light fw-light" href="#">Login</a>
                         </li>
                         <li class="nav-item ms-2 d-none d-md-inline align-self-center">
-                            <a class="btn btn-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <a class="btn btn-dark text-light" href="#">Login</a>
                         </li>
                         <li class="nav-item nav-link text-light fw-light">
                             <a href="#about-me" class="d-md-none">
@@ -47,7 +67,8 @@
                         </li>
                     </ul>
                     <a href="#about-me" class="d-none d-md-inline">
-                        <img src="/image/programmercut.jpg" class="profile-pic ms-3" />
+                        @*<img src="/image/programmercut.jpg" class="profile-pic ms-3" />*@
+                        <img src="~/image/my_pic_full_cut.jpg" class=" profile-pic ms-3" />
                     </a>
                 </div>
             </div>
@@ -80,14 +101,14 @@
         </div>
     </footer>*@
 
-    <!--Offcanvas-->
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="sidebar" aria-labelledby="sidebar-label">
+    <!--Offcanvas: Home-->
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="home-sidebar" aria-labelledby="sidebar-label">
         <div class="offcanvas-header">
             <h3 class="offcanvas-title text-black" id="sidebar-label"><strong>ReadMe</strong></h3>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <p class="text-black">Simple Web Application to consolidate multiple projects.</p>
+            <p class="text-black">Simple Web Application that contains multiple projects.</p>
             <!--Dropdown button-->
             <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="projects-dropdown" 
@@ -101,6 +122,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

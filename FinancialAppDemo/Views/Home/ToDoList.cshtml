@@ -1,84 +1,73 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="~/css/todolist.css" />
-        <title>To-do-list</title>
-    </head>
-    <body>
-        <div class="top-header">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="logo">DAVV</div>
-                    <ul class="nav">
-                        <li><a href="#"> To Do List</a></li>
-                        <li><a href="index.html" target="_blank"> Simple Notes</a></li>
-                    </ul>
-                </div>
-            </nav>
+﻿@{
+    Layout = "_ToDoListLayout";
+}
 
-            <header class="header">
-                <div class="container">
-                    <div>
-                        <h2>Welcome to your own To-Do-List.</h2>
-                        <p>Writing your daily tasks on a list can help you increase productivity and decrease stress. To-do lists enable you to segment your goals into achievable activities and complete large projects by breaking them into smaller assignments. Recording tasks can allow you to better manage your time and encourages you to achieve more throughout your day.</p>
-                        <div class="author">
-                            <p>By Indeed Editorial Team</p>
-                        </div>
-                    </div>
-                    <img src="~/image/to-do-img.png" />
+
+<div class="top-header">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">DAVV</div>
+            <ul class="nav">
+                <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <div>
+                <h2>Welcome to your own To-Do-List.</h2>
+                <p>Writing your daily tasks on a list can help you increase productivity and decrease stress. To-do lists enable you to segment your goals into achievable activities and complete large projects by breaking them into smaller assignments. Recording tasks can allow you to better manage your time and encourages you to achieve more throughout your day.</p>
+                <div class="author">
+                    <p>By Indeed Editorial Team</p>
                 </div>
-            </header>
+            </div>
+            <img src="~/image/to-do-img.png" />
+        </div>
+    </header>
+</div>
+
+<section class="boxes">
+    <div class="big-container">
+        <div class="left-container">
+            <form method="post">
+                <div class="box">
+                    <p>Date:</p>
+                    <input type="date" class="date item" id="date" name="Date"/>
+                </div>
+
+                <div class="box">
+                    <p>Title:</p>
+                    <input type="text" class="title item" id="title" name="Title" />
+                </div>
+
+                <div class="box">
+                    <P>Task:</P>
+                    <textarea class="content item"
+                                id="content"
+                                name = "Task"
+                                required
+                                placeholder="Descibe your task"
+                                oninput='this.style.height="";this.style.height=this.scrollHeight + 3 + "px"'></textarea>
+                    <button class="create btn item" id="submit">Submit</button>
+                </div>
+            </form>
         </div>
 
-        <section class="boxes">
-            <div class="big-container">
-                <div class="left-container">
-                    <form method="post">
-                        <div class="box">
-                            <p>Date:</p>
-                            <input type="date" class="date item" id="date" name="Date"/>
-                        </div>
 
-                        <div class="box">
-                            <p>Title:</p>
-                            <input type="text" class="title item" id="title" name="Title" />
-                        </div>
-
-                        <div class="box">
-                            <P>Task:</P>
-                            <textarea class="content item"
-                                      id="content"
-                                      name = "Task"
-                                      required
-                                      placeholder="Descibe your task"
-                                      oninput='this.style.height="";this.style.height=this.scrollHeight + 3 + "px"'></textarea>
-                            <button class="create btn item" id="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-
-
-                <div class="right-container">
-                    <div class="list box">
-                        <p class="date">Date created: 2022-05-07</p>
-                        <!-- <div class="box"> -->
-                        <h2 class="title">Finish the projects.</h2>
-                        <!-- <div class="box"> -->
-                        <p class="task">
-                            To complete 10 Javascript Projects by the year of 2022.
-                        </p>
-                        <!-- </div class="box">   -->
-                        <button class="close btn">Done</button>
-                    </div>
-                </div>
-
+        <div class="right-container">
+            <div class="list box">
+                <p class="date">Date created: 2022-05-07</p>
+                <!-- <div class="box"> -->
+                <h2 class="title">Finish the projects.</h2>
+                <!-- <div class="box"> -->
+                <p class="task">
+                    To complete 10 Javascript Projects by the year of 2022.
+                </p>
+                <!-- </div class="box">   -->
+                <button class="close btn">Done</button>
             </div>
-        </section>
+        </div>
 
-        <script src="/js/todolist.js"></script>
-
-    </body>
-</html>
+    </div>
+</section>

@@ -141,22 +141,6 @@
                         </div>
                     </div>
 
-                    <div class="col-8 col-md-4 col-lg-3">
-                        <div class="card bg-info" style="width: 18rem;">
-                            <div class="card-header bg-dark">Expense Tracker</div>
-                            <img src="~/image/expenses tracker 2.png" class="card-img-top img-fluid" alt="...">
-                            <div class="card-body">
-                                <h4 class="card-title"><strong>Track Your Expenses!</strong> </h4>
-                                <p class="card-text lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6 text-center">
-                                        <a asp-action="Index" asp-controller="Category" class="btn btn-dark">Go here</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <!--Games-->
@@ -207,12 +191,13 @@
     <div class="container-md my-5 py-5">
         <div class="text-center"> 
             <h2 class="p-2 display-5">About Me</h2>
-            <p class="lead text-muted">A glimpse about me...</p>
+            <p class="lead text-muted">Something about me...</p>
         </div>
 
         <div class="row mt-1 mb-5 g-5 justify-content-around align-items-center">
             <div class="col-6 col-lg-4">
-                <img src="~/image/programmercut.jpg" class="img-fluid"/>
+                @*<img src="~/image/programmercut.jpg" class="img-fluid" />*@
+                <img src="~/image/my_pic_full_cut.jpg" class="img-fluid rounded-2"/>
             </div>
 
             <!--Accordions-->
@@ -227,22 +212,29 @@
                     <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="header-1"
                          data-bs-parent="#infos">
                         <div class="accordion-body text-light bg-dark">
-                            <strong>Hi folks, I'm David!</strong> <span class="wave">👋</span> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <strong>Hi guys, I'm David!</strong> <span class="wave">👋</span> 
+                            <div class="text-light bg-dark">
+                                A self taught programmer passionate in coding and problem-solving. Keen to utilize and implement modern programming skills and technology in my career. Aiming to pursue a professional position in tech industry to expand my skills and be well-rounded in applications development.
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="header-2">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2"
+                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse2"
                                 aria-expanded="false" aria-controls="collapse2">
                             Education & Experience 
                         </button>
                     </h2>
                     <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="header-2"
                          data-bs-parent="#infos">
-                        <div class="accordion-body text-black">
-                            <strong>Hi folks, I'm David!</strong> <span class="wave">👋</span> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <div class="accordion-body text-light bg-dark">
+                            <strong>Education 🎓:</strong> Bachelor Degree in Civil Engineering from University of Malaya.
+                            <div class="text-light bg-dark mt-1">
+                                <strong>Skills 💻:</strong> .NET, C#, SqlServer, Python, Javascript, Bootstrap, HTML, CSS
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -256,8 +248,14 @@
                     </h2>
                     <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="header-3"
                          data-bs-parent="#infos">
-                        <div class="accordion-body text-black">
-                            <strong>Hi folks, I'm David!</strong> <span class="wave">👋</span> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <div class="accordion-body text-light bg-dark">
+                            <strong>H/P ☎️: </strong>/code> +65-8389 2871
+                            <div class="text-light bg-dark">
+                                <strong>E-mail 📧: </strong> davvyap@gmail.com
+                            </div>
+                            <div class="text-light bg-dark">
+                                <strong>Address 🏠: </strong> Singapore
+                            </div>
                         </div>
                     </div>
                 </div>
