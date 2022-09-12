@@ -150,6 +150,14 @@ body {
         color: #2aa1ff;
     }
 
+    .widget.average-income > div:first-child {
+        color: rgb(94, 203, 155);
+    }
+
+    .widget.average-expense > div:first-child {
+        color: rgb(235, 168, 68);
+    }
+
     .widget.chart {
         padding: 5px;
     }
@@ -227,6 +235,12 @@ nav.navbar i {
     height:45px;
     border-radius:50%;
 }
+
+/*Layout Nav Bar*/
+/*#layout-nav-bar {
+    position:fixed;
+    top:0;
+}*/
 
 /*Wave hand*/
 .wave {

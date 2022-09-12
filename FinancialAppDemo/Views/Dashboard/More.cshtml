@@ -1,0 +1,253 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["isExpenseTrackerApp"] = true;
+    List<Transaction> ExpenseCategories = ViewBag.ExpenseCategories;
+}
+
+<!--Selected Dates-->
+<div class="row mb-4">
+    <div class="col-md-5">
+        <div class="widget chart">
+            <div class="p-4">
+                <h3 class="fw-bold"> Date Selected:</h3>
+                <p class="lead"> @ViewBag.StartDate <i class="bi bi-arrow-right-short"></i> @ViewBag.EndDate </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="widget chart">
+            <div class="p-4">
+                <form asp-action="More" method="post" class="row d-flex justify-content-around align-items-center">
+                    <div class="mb-2 col-md-5">
+                        <label asp-for="StartDate" class="form-label"></label>
+                        <input asp-for="StartDate" type="date" class="form-control bg-dark text-white text-center" value="23/09/2022" />
+                        <span asp-validation-for="StartDate" class="text-danger" style="font-size:small"></span>
+                    </div>
+
+                    <div class="mb-2 col-md-5">
+                        <label asp-for="EndDate" class="form-label"></label>
+                        <input asp-for="EndDate" type="date" class="form-control bg-dark text-white text-center" value="23/09/2022" />
+                        <span asp-validation-for="EndDate" class="text-danger" style="font-size:small"></span>
+                    </div>
+
+                    <div class="mb-2 col-md-2">
+                        <button type="submit" class="btn btn-outline-light fw-bold">Filter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--doughnut-->
+<div class="row mb-4 justify-content-between">
+    <div class="col-md-6">
+        <div class="widget chart">
+            <div class="p-4">
+                <h3 class="fw-bold"> Expenses by Category</h3>
+            </div>
+            <ejs-accumulationchart id="doughnutchartexpense" enableSmartLabels background="#1a222b">
+                <e-accumulation-series-collection>
+                    <e-accumulation-series dataSource=@ViewBag.DoughnutChartExpense xName="categoryTitleWithIcon" yName="amount"
+                                           innerRadius="50%" legendShape="Circle">
+                        <e-accumulationseries-datalabel name="formattedAmount" visible>
+                        </e-accumulationseries-datalabel>
+                    </e-accumulation-series>
+                </e-accumulation-series-collection>
+                <e-accumulationchart-legendsettings position="Top" toggleVisibility="false">
+                    <e-legendsettings-textstyle color="#fff" size="1rem"></e-legendsettings-textstyle>
+                </e-accumulationchart-legendsettings>
+                <e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
+            </ejs-accumulationchart>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="widget chart">
+            <div class="p-4">
+                <h3 class="fw-bold"> Income by Category</h3>
+            </div>
+            <ejs-accumulationchart id="doughnutchartincome" enableSmartLabels background="#1a222b">
+                <e-accumulation-series-collection>
+                    <e-accumulation-series dataSource=@ViewBag.DoughnutChartIncome xName="categoryTitleWithIcon" yName="amount"
+                                           innerRadius="50%" legendShape="Circle">
+                        <e-accumulationseries-datalabel name="formattedAmount" visible>
+                        </e-accumulationseries-datalabel>
+                    </e-accumulation-series>
+                </e-accumulation-series-collection>
+                <e-accumulationchart-legendsettings position="Top" toggleVisibility="false">
+                    <e-legendsettings-textstyle color="#fff" size="1rem"></e-legendsettings-textstyle>
+                </e-accumulationchart-legendsettings>
+                <e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
+            </ejs-accumulationchart>
+        </div>
+    </div>
+</div>
+
+<!--Line chart: Income vs Expense-->
+<div class="row mb-4">
+    <div class="col">
+        <div class="widget chart">
+            <div class="d-flex flex-row justify-content-between p-4">
+                <h3 class="fw-bold">Income vs Expense</h3>
+            </div>
+            <ejs-chart id="dashedLineContainerIncome" palettes=@(new string[]{ "#65da41","#ff4e48" })>
+
+                <e-chart-tooltipsettings enable="true" shared="true">
+                </e-chart-tooltipsettings>
+                <e-chart-primaryxaxis valueType="Category">
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                <e-chart-primaryyaxis>
+                    <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-linestyle width="0"></e-linestyle>
+                </e-chart-primaryyaxis>
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
+                <e-chart-crosshairsettings enable=true lineType="Vertical">
+                    <e-crosshairsettings-line color="rgba(204,214,235,0.25)" width="20"></e-crosshairsettings-line>
+                </e-chart-crosshairsettings>
+                <e-series-collection>
+                    <e-series dataSource="@ViewBag.LineChartData" xName="Day" yName="Income" name="Income" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"
+                              width="3">
+                        @*<e-series-marker visible="true" height="10" width="10"></e-series-marker>*@
+                    </e-series>
+                    <e-series dataSource="@ViewBag.LineChartData" xName="Day" yName="Expense" name="Expense" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"
+                              width="3">
+                        @*<e-series-marker visible="true" height="10" width="10" shape="Diamond"></e-series-marker>*@
+                    </e-series>
+                </e-series-collection>
+                <e-chart-legendsettings position="Top" alignment="Far" toggleVisibility="true">
+                    <e-legendsettings-textstyle color="#fff" size="1rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+            </ejs-chart>
+        </div>
+    </div>
+</div>
+
+
+@*
+<!--Line chart: Balance vs Expense-->
+<div class="row mb-4">
+    <div class="col">
+        <div class="widget chart">
+            <div class="d-flex flex-row justify-content-between p-4">
+                <h3 class="fw-bold">Balance vs Expense</h3>
+            </div>
+            <ejs-chart id="dashedLineContainerBalance" palettes=@(new string[]{ "#2aa1ff","#ff4e48" })>
+
+                <e-chart-tooltipsettings enable="true" shared="true">
+                </e-chart-tooltipsettings>
+                <e-chart-primaryxaxis valueType="Category">
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                <e-chart-primaryyaxis>
+                    <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-linestyle width="0"></e-linestyle>
+                </e-chart-primaryyaxis>
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
+                <e-chart-crosshairsettings enable=true lineType="Vertical">
+                    <e-crosshairsettings-line color="rgba(204,214,235,0.25)" width="20"></e-crosshairsettings-line>
+                </e-chart-crosshairsettings>
+                <e-series-collection>
+                    <e-series dataSource="@ViewBag.LineChartData" xName="Day" yName="TotalBalance" name="Balance" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"
+                              width="3">
+                    </e-series>
+                    <e-series dataSource="@ViewBag.LineChartData" xName="Day" yName="Expense" name="Expense" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"
+                              width="3">
+                    </e-series>
+                </e-series-collection>
+                <e-chart-legendsettings position="Top" alignment="Far" toggleVisibility="true">
+                    <e-legendsettings-textstyle color="#fff" size="1rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+            </ejs-chart>
+        </div>
+    </div>
+</div>*@
+
+
+
+@*Summary Widget*@
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="d-flex flex-row widget summary average-income">
+            <div class="d-flex flex-column justify-content-center p-5">
+                <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+            </div>
+            <div class="d-flex flex-column m-auto py-3 align-items-center">
+                <span class="lead">Average Monthly Income</span>
+                <h1 class="display-6">@ViewBag.AverageIncomeInfo</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="d-flex flex-row widget summary average-expense">
+            <div class="d-flex flex-column justify-content-center p-5">
+                <i class="fa-solid fa-dollar-sign fa-2xl"></i>
+            </div>
+            <div class="d-flex flex-column m-auto py-3 align-items-center">
+                <span class="lead">Average Monthly Expense</span>
+                <h1 class="display-6">@ViewBag.AverageExpenseInfo</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Bar Chart-->
+<div class="row mb-4">
+    <div class="col">
+        <div class="widget chart">
+            <div class="d-flex flex-row justify-content-between px-4 pt-4">
+                <h3 class="fw-bold">Income & Expense Over Months</h3>
+            </div>
+            <div class="d-flex flex-row justify-content-between ps-4">
+                <p class="lead fs-5"> @ViewBag.StartMonth <i class="bi bi-arrow-right-short"></i> @ViewBag.EndMonth </p>
+            </div>
+            <ejs-chart id="lineContainer" load="window.onChartLoad" palettes=@(new string[]{ "rgb(94, 203, 155)","rgb(235, 168, 68)" })>
+                <e-chart-tooltipsettings enable="true">
+                </e-chart-tooltipsettings>
+                <e-chart-primaryxaxis valueType="Category" interval=1>
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                </e-chart-primaryxaxis>
+                <e-chart-primaryyaxis>
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-linestyle width="0"></e-linestyle>
+                    <e-labelstyle color="#32414d"></e-labelstyle>
+                </e-chart-primaryyaxis>
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
+                <e-series-collection>
+                    <e-series dataSource="ViewBag.IncomeBarChart" xName='Month' yName='Amount' name='Income' width=2 type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column">
+                        <e-series-marker>
+                            <e-series-datalabel visible="true" position="Top">
+                                <e-font fontWeight="600" color="#000000"></e-font>
+                            </e-series-datalabel>
+                        </e-series-marker>
+                    </e-series>
+                    <e-series dataSource="ViewBag.ExpenseBarChart" xName='Month' yName='Amount' name='Expense' width=2 type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column">
+                        <e-series-marker>
+                            <e-series-datalabel visible="true" position="Top">
+                                <e-font color="#000000" fontWeight="600"></e-font>
+                            </e-series-datalabel>
+                        </e-series-marker>
+                    </e-series>
+                </e-series-collection>
+                <e-chart-legendsettings position="Top" alignment="Far" toggleVisibility="true">
+                    <e-legendsettings-textstyle color="#fff" size="1rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+            </ejs-chart>
+        </div>
+    </div>
+</div>
+

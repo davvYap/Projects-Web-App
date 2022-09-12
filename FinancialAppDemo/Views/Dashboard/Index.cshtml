@@ -78,7 +78,7 @@
     </div>
 </div>
 
-<!--doughnut and spline chart-->
+<!--doughnut-->
 <div class="row mb-4">
     <div class="col-md-4">
         <div class="widget chart">
@@ -106,7 +106,14 @@
         <div class="widget chart">
             <div class="d-flex flex-row justify-content-between p-4">
                 <h3 class="fw-bold">Income vs Expense</h3>
-                <a asp-action="Index" asp-controller="Transaction" class="btn btn-outline-light fw-bold">View Transactions</a>
+
+                <form asp-action="More" method="post" class="row d-flex justify-content-around align-items-center">
+                    <input type="hidden" asp-for="StartDate" />
+                    <input type="hidden" asp-for="EndDate" />
+                    <button type="submit" class="btn btn-outline-light fw-bold">View More</button>
+
+                    @*<a asp-action="More" asp-controller="Dashboard" class="btn btn-outline-light fw-bold">View More</a>*@
+                </form>
             </div>
             <ejs-chart id="dashedLineContainer" palettes=@(new string[]{ "#65da41","#ff4e48" })>
      

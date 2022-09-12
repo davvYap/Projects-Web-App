@@ -40,5 +40,6 @@ namespace FinancialAppDemo.Models
         {
             get { return this.Date.ToString("dd-MMM-yy (ddd)"); }
         }
+
     }
 }
